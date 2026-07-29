@@ -6,15 +6,23 @@ import io.restassured.response.Response;
 public class HelloWorldTest {
     @Test
     public void testHelloWorld() {
-
+        String testUrl = "https://playground.learnqa.ru/api/long_redirect";
+    while (true){
         Response response = RestAssured
                 .given()
                 .redirects()
                 .follow(false)
                 .when()
-                .get("https://playground.learnqa.ru/api/long_redirect")
+                .get(testUrl)
                 .andReturn();
-        String redirectUrl = response.getHeader("Location");
-        System.out.println("Ответ: " + redirectUrl);
+
+        if (response.getStatusCode() == 200) {
+            System.out.println("Ответ: " + testUrl);
+            break;
+        }
+        String newTestUrl = response.getHeader("Location");
+        testUrl = newTestUrl;
+    }
+
     }
 }
