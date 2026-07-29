@@ -9,9 +9,12 @@ public class HelloWorldTest {
 
         Response response = RestAssured
                 .given()
-                .get("https://playground.learnqa.ru/api/get_json_homework")
+                .redirects()
+                .follow(false)
+                .when()
+                .get("https://playground.learnqa.ru/api/long_redirect")
                 .andReturn();
-        String message = response.jsonPath().getString("messages[1].message");
-        System.out.println("Ответ: " + message);
+        String redirectUrl = response.getHeader("Location");
+        System.out.println("Ответ: " + redirectUrl);
     }
 }
