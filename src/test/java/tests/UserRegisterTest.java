@@ -105,7 +105,7 @@ public class UserRegisterTest extends BaseTestCase {
     // 4. Создание пользователя с именем длиннее 250 символов
     @Test
     public void testCreateUserWithVeryLongName() {
-        String longName = "a".repeat(251); // 251 символ
+        String longName = new String(new char[251]).replace('\0', 'a'); // 251 символ
 
         Map<String, String> userData = DataGenerator.getRegistrationData();
         userData.put("firstName", longName);
