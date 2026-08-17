@@ -1,1 +1,11 @@
-HelloWorldTest.class
+EX\testLength.class
+lib\DataGenerator.class
+lib\BaseTestCase.class
+EX\TestCookie.class
+tests\UserAuthTest.class
+lib\Assertions.class
+tests\UserRRegisterTest.class
+tests\UserGetTest.class
+EX\TestUserAgent.class
+lib\ApiCoreRequests.class
+tests\UserEditTest.class
