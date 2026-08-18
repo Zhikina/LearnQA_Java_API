@@ -1,10 +1,11 @@
 EX\testLength.class
 lib\DataGenerator.class
 lib\BaseTestCase.class
+tests\UserDeleteTest.class
 EX\TestCookie.class
 tests\UserAuthTest.class
+tests\UserRegisterTest.class
 lib\Assertions.class
-tests\UserRRegisterTest.class
 tests\UserGetTest.class
 EX\TestUserAgent.class
 lib\ApiCoreRequests.class

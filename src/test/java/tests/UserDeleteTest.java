@@ -31,13 +31,13 @@ import java.util.Map;
             authData.put("password", "1234");
 
             Response responseAuth = apiCoreRequests.makePostRequest(
-                    "https://playground.learnqa.ru/api/user/login", authData);
+                    "https://playground.learnqa.ru/api_dev/user/login", authData);
             String token = this.getHeader(responseAuth, "x-csrf-token");
             String cookie = this.getCookie(responseAuth, "auth_sid");
 
 
             Response responseDelete = apiCoreRequests.makeDeleteRequest(
-                    "https://playground.learnqa.ru/api/user/2", token, cookie);
+                    "https://playground.learnqa.ru/api_dev/user/2", token, cookie);
 
 
             Assertions.assertResponseCodeEquals(responseDelete, 400);
@@ -54,7 +54,7 @@ import java.util.Map;
 
             Map<String, String> userData = DataGenerator.getRegistrationData();
             Response responseCreate = apiCoreRequests.makePostRequest(
-                    "https://playground.learnqa.ru/api/user/", userData);
+                    "https://playground.learnqa.ru/api_dev/user/", userData);
             Assertions.assertResponseCodeEquals(responseCreate, 200);
             String userId = responseCreate.jsonPath().getString("id");
 
@@ -63,18 +63,18 @@ import java.util.Map;
             authData.put("email", userData.get("email"));
             authData.put("password", userData.get("password"));
             Response responseAuth = apiCoreRequests.makePostRequest(
-                    "https://playground.learnqa.ru/api/user/login", authData);
+                    "https://playground.learnqa.ru/api_dev/user/login", authData);
             String token = this.getHeader(responseAuth, "x-csrf-token");
             String cookie = this.getCookie(responseAuth, "auth_sid");
 
 
             Response responseDelete = apiCoreRequests.makeDeleteRequest(
-                    "https://playground.learnqa.ru/api/user/" + userId, token, cookie);
+                    "https://playground.learnqa.ru/api_dev/user/" + userId, token, cookie);
             Assertions.assertResponseCodeEquals(responseDelete, 200); // обычно при успешном удалении возвращается 200
 
 
             Response responseGet = apiCoreRequests.makeGetRequest(
-                    "https://playground.learnqa.ru/api/user/" + userId, token, cookie);
+                    "https://playground.learnqa.ru/api_dev/user/" + userId, token, cookie);
 
             Assertions.assertResponseCodeEquals(responseGet, 404);
         }
@@ -87,7 +87,7 @@ import java.util.Map;
 
             Map<String, String> userData = DataGenerator.getRegistrationData();
             Response responseCreate = apiCoreRequests.makePostRequest(
-                    "https://playground.learnqa.ru/api/user/", userData);
+                    "https://playground.learnqa.ru/api_dev/user/", userData);
             Assertions.assertResponseCodeEquals(responseCreate, 200);
             String userId = responseCreate.jsonPath().getString("id");
 
@@ -96,13 +96,13 @@ import java.util.Map;
             authData.put("email", "vinkotov@example.com");
             authData.put("password", "1234");
             Response responseAuth = apiCoreRequests.makePostRequest(
-                    "https://playground.learnqa.ru/api/user/login", authData);
+                    "https://playground.learnqa.ru/api_dev/user/login", authData);
             String token = this.getHeader(responseAuth, "x-csrf-token");
             String cookie = this.getCookie(responseAuth, "auth_sid");
 
 
             Response responseDelete = apiCoreRequests.makeDeleteRequest(
-                    "https://playground.learnqa.ru/api/user/" + userId, token, cookie);
+                    "https://playground.learnqa.ru/api_dev/user/" + userId, token, cookie);
 
 
             Assertions.assertResponseCodeEquals(responseDelete, 400);

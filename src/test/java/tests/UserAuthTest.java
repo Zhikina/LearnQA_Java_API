@@ -33,7 +33,7 @@ private final ApiCoreRequests apiCoreRequest = new ApiCoreRequests();
         authData.put("password", "1234");
 
         Response responseGetAuth = apiCoreRequest
-                .makePostRequest("https://playground.learnqa.ru/api/user/login", authData);
+                .makePostRequest("https://playground.learnqa.ru/api_dev/user/login", authData);
 
 
         this.cookie = this.getCookie(responseGetAuth, "auth_sid");
@@ -47,7 +47,7 @@ private final ApiCoreRequests apiCoreRequest = new ApiCoreRequests();
 @DisplayName("Test positive auth user")
     public void testAuthUser(){
        Response responseCheckAuth = apiCoreRequest
-               .makeGetRequest("https://playground.learnqa.ru/api/user/auth",  this.header, this.cookie  );
+               .makeGetRequest("https://playground.learnqa.ru/api_dev/user/auth",  this.header, this.cookie  );
 
 
     Assertions.asserJsonByName(responseCheckAuth , "user_id",this.userIdOnAuth);
@@ -62,11 +62,11 @@ private final ApiCoreRequests apiCoreRequest = new ApiCoreRequests();
 
 
 if (condition.equals("cookie")){
-    Response responseForCheck = apiCoreRequest.makeGetRequestWithCookie("https://playground.learnqa.ru/api/user/auth",
+    Response responseForCheck = apiCoreRequest.makeGetRequestWithCookie("https://playground.learnqa.ru/api_dev/user/auth",
             this.cookie);
     Assertions.asserJsonByName(responseForCheck, "user_id", 0);
 }else if (condition.equals("headers")){
-    Response responseForCheck = apiCoreRequest.makeGetRequestWithToken("https://playground.learnqa.ru/api/user/auth" ,
+    Response responseForCheck = apiCoreRequest.makeGetRequestWithToken("https://playground.learnqa.ru/api_dev/user/auth" ,
             this.header);
     Assertions.asserJsonByName(responseForCheck, "user_id", 0);
 }else{
